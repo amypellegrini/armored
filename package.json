@@ -1,0 +1,23 @@
+{
+  "name": "armored",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amypellegrini/armored.git"
+  },
+  "author": "Amy Pellegrini <amyvpellegrini@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amypellegrini/armored/issues"
+  },
+  "homepage": "https://github.com/amypellegrini/armored#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
