@@ -62,7 +62,7 @@ function updateAngleDisplay() {
       displayAngle = 90 - (displayAngle - 90);
     }
 
-    angleDisplay.innerText = displayAngle;
+    angleDisplay.innerText = `Angle: ${displayAngle}°`;
   }
 }
 
@@ -73,6 +73,11 @@ function eraseGun() {
 const handleLeftKeyPress = (event) => {
   eraseGun();
   gunAngle--;
+
+  if (gunAngle < -180) {
+    gunAngle = 0;
+  }
+
   drawGun();
   updateAngleDisplay();
 };
@@ -80,6 +85,11 @@ const handleLeftKeyPress = (event) => {
 const handleRightKeyPress = (event) => {
   eraseGun();
   gunAngle++;
+
+  if (gunAngle > 0) {
+    gunAngle = -180;
+  }
+
   drawGun();
   updateAngleDisplay();
 };
