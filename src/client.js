@@ -27,21 +27,22 @@ for (let x = 0; x < width * 4; x++) {
 ctx.putImageData(terrain, 0, 0);
 ctx.fillRect(tankX, tankY, tankWidth, tankHeight);
 
-let gunAngle = 45;
+let gunAngle = -45;
 
 function drawGun() {
+  ctx.lineWidth = 2;
+
   ctx.beginPath();
-  ctx.strokeStyle = "black";
-
   ctx.translate(gunX, gunY);
+  ctx.moveTo(0, 0);
 
-  const radian = (gunAngle * Math.PI) / 180;
+  const radian = ((gunAngle - 45) * Math.PI) / 180;
 
   ctx.rotate(radian);
-  ctx.translate(-gunX, -gunY);
 
-  ctx.moveTo(gunX, gunY);
-  ctx.lineTo(gunX + 10, gunY - 10);
+  ctx.translate(-gunX, -gunY);
+  ctx.lineTo(gunX + 10, gunY + 10);
+
   ctx.stroke();
 
   ctx.closePath();
@@ -49,6 +50,21 @@ function drawGun() {
 }
 
 drawGun();
+updateAngleDisplay();
+
+function updateAngleDisplay() {
+  const angleDisplay = document.getElementById("angle");
+
+  if (angleDisplay) {
+    let displayAngle = Math.abs(gunAngle);
+
+    if (displayAngle > 90) {
+      displayAngle = 90 - (displayAngle - 90);
+    }
+
+    angleDisplay.innerText = displayAngle;
+  }
+}
 
 function eraseGun() {
   ctx.clearRect(gunX - tankWidth / 2, gunY - 15, tankWidth, 15);
@@ -58,12 +74,14 @@ const handleLeftKeyPress = (event) => {
   eraseGun();
   gunAngle--;
   drawGun();
+  updateAngleDisplay();
 };
 
 const handleRightKeyPress = (event) => {
   eraseGun();
   gunAngle++;
   drawGun();
+  updateAngleDisplay();
 };
 
 const keyPressMap = {
