@@ -31,17 +31,18 @@ let gunAngle = -45;
 
 function drawGun() {
   ctx.lineWidth = 2;
+  ctx.fillStyle = "red";
 
   ctx.beginPath();
   ctx.translate(gunX, gunY);
   ctx.moveTo(0, 0);
 
-  const radian = ((gunAngle - 45) * Math.PI) / 180;
+  const radian = (gunAngle * Math.PI) / 180;
 
   ctx.rotate(radian);
+  ctx.lineTo(15, 0);
 
   ctx.translate(-gunX, -gunY);
-  ctx.lineTo(gunX + 10, gunY + 10);
 
   ctx.stroke();
 
